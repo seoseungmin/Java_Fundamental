@@ -5,14 +5,34 @@ public class CalendarDemo {
     private int month;
     private int day;
     private int totalCount;
-    int[] monthArray = {31,28,31,30,31,30,31,31,30,31,30,31};
+    private int[] monthArray = {31,28,31,30,31,30,31,31,30,31,30,31};
+    
+    public CalendarDemo(int y){
+    	//year = y;
+    	this(y,0,0);
+    	
+    } 
+    public CalendarDemo(int y, int m){
+    	//year = y;
+    	//month = m;
+    	this(y,m,0); //여기의 this는 생성자에서만 호출 가능
+    }	
+    //매개변수 3개짜리 생성자(클래스 이름과 동일하면서 반환값이 없다)
+    public CalendarDemo(int year, int month, int day){
+    	this.year = year;
+    	this.month = month;
+    	this.day = day; //자기자신을 가리키는 this
+    	getTotalcount();
+    }
+    
     public void set(int y, int m, int d){
         year = y;
         month = m;
         day = d;
+        getTotalcount();
     }
      
-    public int getTotalcount(){
+   private int getTotalcount(){ // 사용자에게 필요한 것만 공개하고 나머지는 숨기는게 oop적인 코딩이다(사용자에게 편리한 코딩)
         //preYear => 2018년도
         int preYear=year-1;
         //premonth => 2019년 11월
@@ -62,10 +82,15 @@ public class CalendarDemo {
                 year, month, day, message);
          
     }
+    /*
+    public CalendarDemo(){
+    	
+    }
+    */
     public static void main(String[] args) {
         CalendarDemo c = new CalendarDemo();
-        c.set(2019,12,25); // set메서드로 초기화
-        int count = c.getTotalcount();
+       // c.set(2019,12,25); // set메서드로 초기화
+        //int count = c.getTotalcount();
         c.print();
     }
 }// 클래스를 배웠으면 메인함수를 쪼개서 로직을 나눌 수 있어야 한다.
